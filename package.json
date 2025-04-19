@@ -2,7 +2,7 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "Proyect_Aqua",
-  "main": "src/app.js",
+  "main": "app.js",
   "scripts": {
     " start": "node .",
     "dev": "nodemon ."
@@ -13,6 +13,7 @@
     "body-parser": "^2.2.0",
     "dotenv": "^16.4.7",
     "express": "^5.1.0",
+    "mssql": "^11.0.1",
     "mysql": "^2.18.1"
   },
   "devDependencies": {
