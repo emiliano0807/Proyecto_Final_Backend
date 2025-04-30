@@ -32,16 +32,18 @@ module.exports = {
     },
 
   create: async (req, res) => {
-    const { id_Usuarios, nombre, correo } = req.body;
+    console.log("Body recibido", req.body); // Agregado para depuración
+    const { id_Usuarios, nombre, Apellido_1, Apellido_2 } = req.body;
     try {
       const pool = await poolPromise;
       await pool.request()
         .input('id_Usuarios', id_Usuarios)
         .input('nombre', nombre)
-        .input('correo', correo)
+        .input('Apellido_1', Apellido_1)
+        .input('Apellido_2',Apellido_2)
         .query(`
-          INSERT INTO usuariosElCerrito (id_Usuarios, nombre, correo)
-          VALUES (@id_Usuarios, @nombre, @correo)
+          INSERT INTO usuariosElCerrito (id_Usuarios, nombre, Apellido_1, Apellido_2)
+          VALUES (@id_Usuarios, @nombre, @Apellido_1, @Apellido_2)
         `);
       res.status(201).send('Usuario creado');
     } catch (err) {
@@ -51,17 +53,21 @@ module.exports = {
   },
 
   update: async (req, res) => {
+
+    console.log("ID del usuario:", req.params.id);
+    console.log("Datos recibidos para actualizar:", req.body);
     const { id } = req.params;
-    const { nombre, correo } = req.body;
+    const { nombre, Apellido_1, Apellido_2 } = req.body;
     try {
       const pool = await poolPromise;
       const result = await pool.request()
         .input('id', id)
         .input('nombre', nombre)
-        .input('correo', correo)
+        .input('Apellido_1', Apellido_1)
+        .input('Apellido_2', Apellido_2)
         .query(`
           UPDATE usuariosElCerrito
-          SET nombre = @nombre, correo = @correo
+          SET nombre = @nombre, Apellido_1 = @Apellido_1, Apellido_2 = @Apellido_2
           WHERE id_Usuarios = @id
         `);
       if (result.rowsAffected[0] === 0) return res.status(404).send('Usuario no encontrado');
