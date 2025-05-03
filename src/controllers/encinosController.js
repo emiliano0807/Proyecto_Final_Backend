@@ -1,4 +1,4 @@
-const { poolPromise } = require('../db');
+const { poolPromise } = require('../db/db');
 
 module.exports = {
   getAll: async (req, res) => {
@@ -6,7 +6,7 @@ module.exports = {
       const pool = await poolPromise;
       const result = await pool.request().query(`
         SELECT *
-        FROM usuariosOxthoc
+        FROM usuariosLosEncinos
         ORDER BY CAST(SUBSTRING(id_Usuarios, 3, LEN(id_Usuarios)) AS INT)
       `);
       res.json(result.recordset);
@@ -22,7 +22,7 @@ module.exports = {
       const pool = await poolPromise;
       const result = await pool.request()
         .input('id', id)
-        .query('SELECT * FROM usuariosOxthoc WHERE id_Usuarios = @id');
+        .query('SELECT * FROM usuariosLosEncinos WHERE id_Usuarios = @id');
       if (result.recordset.length === 0) return res.status(404).send('Usuario no encontrado');
       res.json(result.recordset[0]);
     } catch (err) {
@@ -41,7 +41,7 @@ module.exports = {
         .input('Apellido_1', Apellido_1)
         .input('Apellido_2', Apellido_2)
         .query(`
-          INSERT INTO usuariosOxthoc (id_Usuarios, nombre, Apellido_1, Apellido_2)
+          INSERT INTO usuariosLosEncinos (id_Usuarios, nombre, Apellido_1, Apellido_2)
           VALUES (@id_Usuarios, @nombre, @Apellido_1, @Apellido_2)
         `);
       res.status(201).send('Usuario creado');
@@ -62,7 +62,7 @@ module.exports = {
         .input('Apellido_1', Apellido_1)
         .input('Apellido_2', Apellido_2)
         .query(`
-          UPDATE usuariosOxthoc
+          UPDATE usuariosLosEncinos
           SET nombre = @nombre, Apellido_1 = @Apellido_1, Apellido_2 = @Apellido_2
           WHERE id_Usuarios = @id
         `);
@@ -80,7 +80,7 @@ module.exports = {
       const pool = await poolPromise;
       const result = await pool.request()
         .input('id', id)
-        .query('DELETE FROM usuariosOxthoc WHERE id_Usuarios = @id');
+        .query('DELETE FROM usuariosLosEncinos WHERE id_Usuarios = @id');
       if (result.rowsAffected[0] === 0) return res.status(404).send('Usuario no encontrado');
       res.send('Usuario eliminado');
     } catch (err) {

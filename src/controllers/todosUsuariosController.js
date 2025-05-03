@@ -1,4 +1,4 @@
-const { poolPromise } = require('../db');
+const { poolPromise } = require('../db/db');
 module.exports = {
 getAll: async (req, res) => {
     try {
