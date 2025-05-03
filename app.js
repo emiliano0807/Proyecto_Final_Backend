@@ -11,11 +11,7 @@ const todosUsuariosRoutes = require('./routes/todosUsuariosRoutes');
 
 dotenv.config();
 app.use(express.json());
-//app.use(cors());
-
-app.use(cors({
-    origin: 'http://127.0.0.1:5500'
-  }));
+app.use(cors());
 // Rutas
 app.use('/usuariosElCerrito', cerritoRoutes);
 app.use('/usuariosLaVega', vegaRoutes);
