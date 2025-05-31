@@ -1,6 +1,5 @@
 const express = require('express');
 const dotenv = require('dotenv');
-const app = express();
 const cors = require('cors');
 const cerritoRoutes = require('./src/routes/cerritoRoutes');
 const vegaRoutes = require('./src/routes/vegaRoutes');
@@ -9,6 +8,7 @@ const oxthocRoutes = require('./src/routes/oxthocRoutes');
 const coloniaRoutes = require('./src/routes/coloniaRoutes');
 const todosUsuariosRoutes = require('./src/routes/todosUsuariosRoutes');
 
+const app = express();
 dotenv.config();
 app.use(express.json());
 app.use(cors());
