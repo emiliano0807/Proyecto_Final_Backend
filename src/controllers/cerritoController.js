@@ -25,10 +25,10 @@ module.exports = {
                 .query('SELECT * FROM usuariosElCerrito WHERE id_Usuarios = @id');
                 if (result.recordset.length === 0) return res.status(404).send('Usuario no encontrado');
                 res.json(result.recordset[0]);
-    } catch (err) {
-        console.error(err);
-        res.status(500).send('Error al obtener el usuario');
-    }
+            } catch (err) {
+                console.error(err);
+                res.status(500).send('Error al obtener el usuario');
+            }
     },
 
   create: async (req, res) => {
