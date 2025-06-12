@@ -7,6 +7,10 @@ const encinosRoutes = require('./src/routes/encinosRoutes');
 const oxthocRoutes = require('./src/routes/oxthocRoutes');
 const coloniaRoutes = require('./src/routes/coloniaRoutes');
 const todosUsuariosRoutes = require('./src/routes/todosUsuariosRoutes');
+const lecturaCerritoRoutes = require('./src/routes/lecCerritoRoutes');
+const lecturaVegaRoutes = require('./src/routes/lecVegaRoutes');
+//const lecturaEncinosRoutes = require('./src/routes/lecEncinosRoutes');
+const lecturasRoutes = require('./src/routes/lecturasTotalesRoutes');
 
 const app = express();
 dotenv.config();
@@ -19,6 +23,9 @@ app.use('/usuariosLosEncinos', encinosRoutes);
 app.use('/usuariosOxthoc', oxthocRoutes);
 app.use('/usuariosLaColonia', coloniaRoutes);
 app.use('/usuariosTotal', todosUsuariosRoutes);
+app.use('/lecturasCerrito', lecturaCerritoRoutes);
+app.use('/lecturasVega', lecturaVegaRoutes);
+app.use('/', lecturasRoutes);
 
 
 const port = process.env.PORT || 3000;
