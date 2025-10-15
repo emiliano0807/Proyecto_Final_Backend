@@ -8,3 +8,5 @@ router.get('/ultimaLectura/:medidor', lecturasController.obtenerUltimaLectura);
 module.exports = router;
 
 
+
+
